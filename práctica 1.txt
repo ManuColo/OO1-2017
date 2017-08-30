@@ -38,7 +38,8 @@ robotech isBrushDown        False      False        False       False
 #southWest
 
 	self direction: 225
-	
+
+Ej 6 -
 robotech position: (25@25);
     northEast.
 4 timesRepeat: [
