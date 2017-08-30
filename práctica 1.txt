@@ -1,0 +1,19 @@
+Ej 1 - 
+    El robot baja elm pincel, realiza un cuadrado de 10 x 10 y levanta el pincel.
+    
+Ej 2 -
+    a - 25@25
+    b - 0
+    c - false
+   
+Ej 3 - 2 -
+    Tiene 100 de carga inicial. Puede mover 100 unidades ya que consume 1 unidad por movimiento.
+    
+Ej 4 -
+    robotech position: (25@25);
+        direction: 45;
+        brushDown.
+    4 timesRepeat: [
+        robotech move: 10;
+        direction: robotech direction + 90
+    ].
