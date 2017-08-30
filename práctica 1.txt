@@ -17,3 +17,25 @@ Ej 4 -
         robotech move: 10;
         direction: robotech direction + 90
     ].
+
+Ej 5 -
+                          northEast   northWest   southEast   southWest
+robotech position           25@25      25@25        25@25       25@25
+robotech direction           45         315          135         225
+robotech isBrushDown        False      False        False       False
+
+#northEast
+
+	self direction: 45
+    
+#northWest
+
+	self direction: 315
+    
+#southEast
+
+	self direction: 135
+    
+#southWest
+
+	self direction: 225
