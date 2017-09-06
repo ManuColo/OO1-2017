@@ -7,7 +7,7 @@ Ej 2 -
     c - false
    
 Ej 3 - 2 -
-    Tiene 100 de carga inicial. Puede mover 100 unidades ya que consume 1 unidad por movimiento.
+    Tiene 100 de carga inicial. Puede mover 100 unidades ya que consume 1 unidad por movimiento, salvo que suba o baje el pincel, en este caso por movimiento de pincel también consume 1 unidad.
     
 Ej 4 -
     robotech position: (25@25);
@@ -46,3 +46,57 @@ robotech position: (25@25);
     robotech move: 10;
     direction: robotech direction + 90
 ].
+
+Ej 7 -
+   a - Battery y Brush
+   b - canConsume:, consume:, goUp, goDown, isUp, isDown
+   c - capacity y charge
+   
+Ej 8 -
+printOn: aStream
+
+  aStream
+    nextPutAll: 'Robot en ';
+    nextPutAll: self position printString;
+    nextPutAll: ', direccion ';
+    nextPutAll: self direction printString.
+
+trace: aDistance
+  "Dibuja una linea de una distancia dada"
+  self move: 1;
+      brushDown;
+      move: aDistance - 1;
+      brushUp.
+ 
+Ej 9 -
+    c - robotech battery charge
+    d - robotech battery: backupBattery.
+
+Ej 10 -
+    1 - robotech battery: endlessBattery.
+        endlessBattery no informa ni capacidad ni carga, se la supone infinita y siempre tiene carga a consumir.
+    2 - 
+    dash: aNumber
+  "Realiza una linea punteada de longitud aNumber"
+
+  aNumber // 2
+    timesRepeat: [
+      self
+        trace: 1;
+        move: 1 ].
+  aNumber odd
+    ifTrue: [ self trace: 1 ]
+    
+   3 - dash: aNumber spacing: aLong
+  "Realiza una linea punteada de longitud aNumber"
+
+  (aNumber isDivisibleBy: aLong)
+  ifTrue: [
+    aNumber // aLong
+    timesRepeat: [
+      self
+        trace: aLong;
+        move: aLong ].
+    ]
+
+Ej 11 -
