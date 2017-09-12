@@ -52,15 +52,12 @@ Ej 7 -
    b - canConsume:, consume:, goUp, goDown, isUp, isDown
    c - capacity y charge
    
-Ej 8 -
-printOn: aStream
-
-  aStream
-    nextPutAll: 'Robot en ';
-    nextPutAll: self position printString;
-    nextPutAll: ', direccion ';
-    nextPutAll: self direction printString.
-
+Ej 8 - printOn: aStream
+	aStream
+		nextPutAll: 'Robot en ';
+		nextPutAll: self position printString;
+		nextPutAll: ', direccion ';
+		nextPutAll: self direction printString
 trace: aDistance
   "Dibuja una linea de una distancia dada"
   self move: 1;
