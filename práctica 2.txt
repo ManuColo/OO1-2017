@@ -3,8 +3,8 @@
     "Realiza un cuadrado con una esquina en su posición actual y de lado aSize."
     4 timesRepeat: [
         self move: aSize;
-        direction: self direction + 90
-].
+            direction: ((self direction + 90) % 360).
+	].
 
 #squareOfSize: aSize at: aPoint
     "Realiza un cuadrado con una esquina en el punto aPoint y de lado aSize."
@@ -18,10 +18,10 @@
 
 #rotatedSquareOfSize: aSize
     "Realiza un cuadrado con una esquina en su posición actual, de lado aSize, rotado 45 grados."
-    self direction: self direction + 45;
+    self direction: (self direction + 45) % 360;
          squareOfSize: aSize.
          
 #rotatedSquareOfSize: aSize at:aPoint
     "Realiza un cuadrado con una esquina en aPoint, de lado aSize, rotado 45 grados."
-    self direction: self direction + 45;
+    self direction: (self direction + 45) % 360;
          squareOfSize: aSize at: aPoint.
