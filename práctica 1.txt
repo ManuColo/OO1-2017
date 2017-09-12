@@ -92,11 +92,13 @@ Ej 10 -
 
   (aNumber isDivisibleBy: aLong)
   ifTrue: [
-    aNumber // aLong
+    (aNumber // aLong) // 2
     timesRepeat: [
       self
         trace: aLong;
         move: aLong ].
-    ]
+    ].
+    (aNumber // aLong) odd
+        ifTrue: [ self trace: aLong ].
 
 Ej 11 -
