@@ -1,10 +1,13 @@
 1 - 
 #squareOfSize: aSize
     "Realiza un cuadrado con una esquina en su posición actual y de lado aSize."
+    |newDirection|
+    newDirection := self direction. 
     4 timesRepeat: [
-        self move: aSize;
-            direction: ((self direction + 90) % 360).
-	].
+        self move: aSize.
+        newDirection := (newDirection + 90) % 360.
+        self direction: newDirection.
+].
 
 #squareOfSize: aSize at: aPoint
     "Realiza un cuadrado con una esquina en el punto aPoint y de lado aSize."
