@@ -28,3 +28,17 @@
     "Realiza un cuadrado con una esquina en aPoint, de lado aSize, rotado 45 grados."
     self direction: (self direction + 45) % 360;
          squareOfSize: aSize at: aPoint.
+
+2 - 
+    Object subclass: #PatrolCouple
+	instanceVariableNames: 'patrol sniper'
+	classVariableNames: ''
+	package: 'BotArena'
+    
+#patrol: aRobot
+    "Asigna un robot a sniper"
+    patrol := aRobot.
+    
+#sniper: aRobot
+    "Asigna un robot a sniper"
+    sniper := aRobot.
