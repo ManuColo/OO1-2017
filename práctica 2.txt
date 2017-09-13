@@ -35,10 +35,25 @@
 	classVariableNames: ''
 	package: 'BotArena'
     
+MÉTODOS DE INSTANCIA:
+#patrol
+	^patrol
+	
 #patrol: aRobot
     "Asigna un robot a sniper"
     patrol := aRobot.
-    
+
+#sniper
+	^sniper
+	
 #sniper: aRobot
     "Asigna un robot a sniper"
     sniper := aRobot.
+    
+MÉTODO DE CLASE:
+#patrol: aPatrolRobot sniper: aSniperRobot
+"Toma dos robots como parámetros y los guarda en las variables de instancia que correspondan"
+^ self new
+	patrol: aPatrolRobot;
+	sniper: aSniperRobot; 
+	yourself
