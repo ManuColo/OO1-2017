@@ -92,6 +92,28 @@ MÉTODO DE CLASE:
     self sniper direction: newDirection.
   ].
   
+  #regularPatrolTrace
+  "Similar a regularPatrol pero patrol realiza un trazo con el brush"
+
+  self patrol brushDown.
+  self regularPatrol.
+  self patrol brushUp.
+
+  #doTheRegularPatrol
+  |patrolBateryCharge sniperBateryCharge sniperPosition|
+  "Los guardias repiten regularPatrol 5 veces, pero luego de cada una se corren
+  5 hacia el este. Considere usar bateria con suficiente carga"
+  patrolBateryCharge := self patrol battery charge.
+  sniperBateryCharge := self sniper battery charge.
+  sniperPosition := self sniper position.
+  5 timesRepeat: [
+      ((patrolBateryCharge >= (10 * 4 + 7)) & (sniperBateryCharge >= 5))
+        ifTrue: [
+          self patrol north.
+          sniperPosition := sniperPosition + (5@0).
+          self sniper position: sniperPosition.
+          self regularPatrol ]
+  ]
 
 ##############  Comandos de prueba
 
@@ -101,5 +123,5 @@ bot2 := robot2.
 bot1 brushDown.
 bot2 brushDown.
 patrolCouple := PatrolCouple newPatrol: bot1 sniper: bot2.
-patrolCouple reset.
 patrolCouple regularPatrol.
+patrolCouple regularPatrolTrace.
