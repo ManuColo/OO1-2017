@@ -29,8 +29,9 @@
     self direction: (self direction + 45) % 360;
          squareOfSize: aSize at: aPoint.
 
-2 - 
-    Object subclass: #PatrolCouple
+3 - 
+  1 -
+  Object subclass: #PatrolCouple
 	instanceVariableNames: 'patrol sniper'
 	classVariableNames: ''
 	package: 'BotArena'
@@ -49,11 +50,25 @@ MÉTODOS DE INSTANCIA:
 #sniper: aRobot
     "Asigna un robot a sniper"
     sniper := aRobot.
-    
-MÉTODO DE CLASE:
+
 #patrol: aPatrolRobot sniper: aSniperRobot
-"Toma dos robots como parámetros y los guarda en las variables de instancia que correspondan"
-^ self new
-	patrol: aPatrolRobot;
-	sniper: aSniperRobot; 
-	yourself
+  "Toma dos robots como parámetros y los guarda en las variables de instancia que correspondan"
+	self patrol: aPatrolRobot;
+	sniper: aSniperRobot.
+
+  2 - Creo desde el mapa los robots "robot1 y robot2" y después en el playgroynd escribo:
+  |patrolCouple bot1 bot2|
+bot1 := robot1.
+bot2 := robot2.
+patrolCouple := PatrolCouple new.
+patrolCouple patrol: bot1 sniper: bot2.
+
+  3 - El agregado de este metodo permite reducir las últimas dos líneas del punto anterior a "patrolCouple := PatrolCouple newPatrol: bot1 sniper: bot2."
+
+MÉTODO DE CLASE:
+#newPatrol: aPatrolRobot sniper: aSniperRobot
+  "Crea e inicializa un PatrolCouple con robots."
+
+  ^ self new patrol: aPatrolRobot sniper: aSniperRobot.
+  
+  
