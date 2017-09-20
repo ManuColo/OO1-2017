@@ -100,20 +100,24 @@ MÉTODO DE CLASE:
   self patrol brushUp.
 
   #doTheRegularPatrol
-  |patrolBateryCharge sniperBateryCharge sniperPosition|
+  |sniperPosition|
   "Los guardias repiten regularPatrol 5 veces, pero luego de cada una se corren
   5 hacia el este. Considere usar bateria con suficiente carga"
-  patrolBateryCharge := self patrol battery charge.
-  sniperBateryCharge := self sniper battery charge.
   sniperPosition := self sniper position.
   5 timesRepeat: [
-      ((patrolBateryCharge >= (10 * 4 + 7)) & (sniperBateryCharge >= 5))
-        ifTrue: [
-          self patrol north.
-          sniperPosition := sniperPosition + (5@0).
-          self sniper position: sniperPosition.
-          self regularPatrol ]
+      self patrol north.
+      sniperPosition := sniperPosition + (5@0).
+      self sniper position: sniperPosition.
+      self regularPatrol.
   ]
+  
+  #doTheRegularPatrolTrace
+  "Similar a doTheRegularPatrol pero cada robot deja un trazo en la arena con
+  el brush"
+
+  self patrol brushDown.
+  self doTheRegularPatrol.
+  self patrol brushUp.
 
 ##############  Comandos de prueba
 
@@ -125,3 +129,11 @@ bot2 brushDown.
 patrolCouple := PatrolCouple newPatrol: bot1 sniper: bot2.
 patrolCouple regularPatrol.
 patrolCouple regularPatrolTrace.
+patrolCouple doTheRegularPatrol.
+patrolCouple doTheRegularPatrolTrace.
+
+
+5 - Object subclass: #CastleWatch
+	instanceVariableNames: 'northWatch southWatch eastWatch westWatch'
+	classVariableNames: ''
+	package: 'BotArena'
