@@ -1,13 +1,10 @@
 1 - 
 #squareOfSize: aSize
     "Realiza un cuadrado con una esquina en su posición actual y de lado aSize."
-    |newDirection|
-    newDirection := self direction. 
     4 timesRepeat: [
         self move: aSize.
-        newDirection := (newDirection + 90) % 360.
-        self direction: newDirection.
-].
+        self quarter.
+    ].
 
 #squareOfSize: aSize at: aPoint
     "Realiza un cuadrado con una esquina en el punto aPoint y de lado aSize."
@@ -21,12 +18,12 @@
 
 #rotatedSquareOfSize: aSize
     "Realiza un cuadrado con una esquina en su posición actual, de lado aSize, rotado 45 grados."
-    self direction: (self direction + 45) % 360;
+    self direction: self direction + 45;
          squareOfSize: aSize.
          
 #rotatedSquareOfSize: aSize at:aPoint
     "Realiza un cuadrado con una esquina en aPoint, de lado aSize, rotado 45 grados."
-    self direction: (self direction + 45) % 360;
+    self direction: self direction + 45;
          squareOfSize: aSize at: aPoint.
 
 3 - 
@@ -80,24 +77,26 @@ MÉTODO DE CLASE:
     position: (20@25).
   self sniper south;
     position: (20@20).
-    
+  
+  Para regularPatrol defino spin en WalkingBrushRobot
+  #spin
+      4 timesRepeat: [
+        self quarter.
+      ].
+  
   #regularPatrol
   "patrol hace un cuadrado de lado 10 rotado 45 grados alrededor de sniper,
     sniper en el centro gira en sentido de las agujas del reloj."
-  |newDirection|
-  newDirection := sniper direction. 
-  self patrol rotatedSquareOfSize: 10 at: ((self sniper position x - 10)@(self sniper position y)).
-  4 timesRepeat: [
-	 newDirection := (newDirection + 90) % 360.
-    self sniper direction: newDirection.
-  ].
+      self patrol rotatedSquareOfSize: 10 at: ((self sniper position x - 10)@(self sniper position y)).
+      self sniper spin.
+  
   
   #regularPatrolTrace
   "Similar a regularPatrol pero patrol realiza un trazo con el brush"
 
-  self patrol brushDown.
-  self regularPatrol.
-  self patrol brushUp.
+      self patrol brushDown.
+      self regularPatrol.
+      self patrol brushUp.
 
   #doTheRegularPatrol
   |sniperPosition|
@@ -105,7 +104,6 @@ MÉTODO DE CLASE:
   5 hacia el este. Considere usar bateria con suficiente carga"
   sniperPosition := self sniper position.
   5 timesRepeat: [
-      self patrol north.
       sniperPosition := sniperPosition + (5@0).
       self sniper position: sniperPosition.
       self regularPatrol.
