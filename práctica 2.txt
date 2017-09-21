@@ -119,7 +119,9 @@ MÉTODO DE CLASE:
 
 ##############  Comandos de prueba
 
-|patrolCouple bot1 bot2|
+|patrolCouple bot1 bot2 endlessBattery|
+endlessBattery := EndlessBattery new.
+robot2 battery: endlessBattery.
 bot1 := robot1.
 bot2 := robot2.
 bot1 brushDown.
@@ -135,3 +137,37 @@ patrolCouple doTheRegularPatrolTrace.
 	instanceVariableNames: 'northWatch southWatch eastWatch westWatch'
 	classVariableNames: ''
 	package: 'BotArena'
+
+#eastWatch
+    ^eastWatch.
+
+#northWatch
+    ^northWatch.
+  
+#southWatch
+    ^southWatch.
+    
+#westWatch
+    ^westWatch.
+    
+#eastWatch: aRobot
+    eastWatch:= aRobot.
+
+#northWatch: aRobot
+    northWatch:= aRobot.
+  
+#southWatch: aRobot
+    southWatch:= aRobot.
+    
+#westWatch: aRobot
+    westWatch:= aRobot.
+    
+Método de clase
+#northWatch: aRobotN southWatch: aRobotS eastWatch: aRobotE westWatch: aRobotW
+   self
+     new;
+     northWatch: aRobotN;
+     southWatch: aRobotS;
+     eastWatch: aRobotE;
+     westWatch: aRobotW.
+   ^self.
