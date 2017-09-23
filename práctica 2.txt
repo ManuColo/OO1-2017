@@ -66,7 +66,8 @@ MÉTODO DE CLASE:
 #newPatrol: aPatrolRobot sniper: aSniperRobot
   "Crea e inicializa un PatrolCouple con robots."
 
-  ^ self new patrol: aPatrolRobot sniper: aSniperRobot.
+  ^ self new patrol: aPatrolRobot; sniper: aSniperRobot;
+  yourself.
   
 4 - 
   #reset
@@ -171,3 +172,28 @@ Método de clase
      eastWatch: aRobotE;
      westWatch: aRobotW.
    ^self.
+
+#regularWatch
+"Los robots realizan un cuadrado de lado 3 en su correspondiente flanco."
+self eastWatch brushDown; squareOfSize: 3.
+self northWatch brushDown; squareOfSize: 3.
+self southWatch brushDown; squareOfSize: 3.
+self westWatch brushDown; squareOfSize: 3.
+
+Defino métodos para posicionar los robots para el método siguiente
+#posEast
+	self eastWatch position: (15@31); north.
+#posNorth
+	self northWatch position: (21@15); east.
+#posSouth
+	self southWatch position: (21@34); east.
+#posSouth
+	self southWatch position: (21@34); east.
+	
+#paranoicWatch
+"cada robot realiza un recorrido del flanco completo, dibujando un rectangulo de 4x10"
+self posEast; posNorth; posSouth; posWest.   
+2 timesRepeat: [ self eastWatch trace: 9; quarter; trace:3; quarter.
+		self northWatch trace: 9; quarter; trace:3; quarter.
+		self southWatch trace: 9; quarter; trace:3; quarter.
+		self westWatch trace: 9; quarter; trace:3; quarter.]
