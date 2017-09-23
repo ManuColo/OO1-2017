@@ -227,7 +227,7 @@ Object subclass: #Wallpost
     "Retorna el estado de “destacado” de la publicacion"
     ^ featured.
 #featured: aMark
-    "Setea el estado de destacado de la publicación"
+    "Setea el estado de “destacado” de la publicación"
     featured := aMark.
 #isFeatured
     "Retorna true si el post esta marcado como destacado, false en caso contrario"
@@ -237,7 +237,7 @@ Object subclass: #Wallpost
     (self featured= true)
 		ifTrue: [ self featured: false ] 
 		ifFalse: [ self featured: true ]. 
-initialize
+#initialize
 "Inicializa el estado de las variables de instancia del Wallpost. Luego de la invocación el Wallpost debe tener como texto: “Undefined post”, no debe estar marcado como destacado y la cantidad de “Me gusta” deben ser 0."
     self
         text: 'Undefined post';
