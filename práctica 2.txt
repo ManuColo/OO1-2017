@@ -164,14 +164,11 @@ patrolCouple doTheRegularPatrolTrace.
     westWatch:= aRobot.
     
 Método de clase
-#northWatch: aRobotN southWatch: aRobotS eastWatch: aRobotE westWatch: aRobotW
-   self
-     new;
-     northWatch: aRobotN;
-     southWatch: aRobotS;
-     eastWatch: aRobotE;
-     westWatch: aRobotW.
-   ^self.
+newEast: robot1 north: robot2 south: robot3 west: robot4
+"Toma dos robots como parámetros y los guarda en las variables de instancia que correspondan"
+	^ self new
+		eastWatch: robot1; northWatch: robot2; southWatch: robot3; westWatch: robot4; 
+		yourself.
 
 #regularWatch
 "Los robots realizan un cuadrado de lado 3 en su correspondiente flanco."
