@@ -201,7 +201,7 @@ self posEast; posNorth; posSouth; posWest.
 6 - 
 DEFINICIÓN CLASE:
 Object subclass: #Wallpost
-	instanceVariableNames: 'likes marked text'
+	instanceVariableNames: 'likes featured text'
 	classVariableNames: ''
 	package: 'WallPost'
 	
@@ -223,17 +223,17 @@ Object subclass: #Wallpost
 	ifTrue: [
         self likes: self likes - 1.
     ].
-#marked
+#featured
     "Retorna el estado de “destacado” de la publicacion"
-    ^ marked.
-#marked: aMark
+    ^ featured.
+#featured: aMark
     "Setea el estado de destacado de la publicación"
-    marked := aMark.
+    featured := aMark.
 #isFeatured
     "Retorna true si el post esta marcado como destacado, false en caso contrario"
-    ^self marked.
+    ^self featured.
 #toggleFeatured
     "Cambia el post del estado destacado a no destacado y viceversa "
-    (self marked= true)
-		ifTrue: [ self marked: false ] 
-		ifFalse: [ self marked: true ]. 
+    (self featured= true)
+		ifTrue: [ self featured: false ] 
+		ifFalse: [ self featured: true ]. 
