@@ -223,3 +223,6 @@ Object subclass: #Wallpost
 	ifTrue: [
         self likes: self likes - 1.
     ].
+#isFeatured
+    "Retorna true si el post esta marcado como destacado, false en caso contrario"
+    ^self marked.
