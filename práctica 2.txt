@@ -223,6 +223,17 @@ Object subclass: #Wallpost
 	ifTrue: [
         self likes: self likes - 1.
     ].
+#marked
+    "Retorna el estado de “destacado” de la publicacion"
+    ^ marked.
+#marked: aMark
+    "Setea el estado de destacado de la publicación"
+    marked := aMark.
 #isFeatured
     "Retorna true si el post esta marcado como destacado, false en caso contrario"
     ^self marked.
+#toggleFeatured
+    "Cambia el post del estado destacado a no destacado y viceversa "
+    (self marked= true)
+		ifTrue: [ self marked: false ] 
+		ifFalse: [ self marked: true ]. 
