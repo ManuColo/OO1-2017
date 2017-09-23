@@ -197,3 +197,29 @@ self posEast; posNorth; posSouth; posWest.
 		self northWatch trace: 9; quarter; trace:3; quarter.
 		self southWatch trace: 9; quarter; trace:3; quarter.
 		self westWatch trace: 9; quarter; trace:3; quarter.]
+
+6 - 
+DEFINICIÓN CLASE:
+Object subclass: #Wallpost
+	instanceVariableNames: 'likes marked text'
+	classVariableNames: ''
+	package: 'WallPost'
+	
+#text
+    "Retorna el texto descriptivo de la publicación"
+    ^ text.
+#text: aText
+    "Setea el texto descriptivo de la publicación"
+    text:= aText.
+#likes
+    "Retorna la cantidad de “me gusta”"
+    ^ likes.
+#like
+    "Incrementa la cantidad de likes en uno"
+    self likes: self likes + 1.
+#dislike
+    "Decrementa la cantidad de likes en uno. Si ya es 0, no hace nada"
+    ((self likes) > 0) 
+	ifTrue: [
+        self likes: self likes - 1.
+    ].
