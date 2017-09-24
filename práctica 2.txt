@@ -279,3 +279,12 @@ b. Busque el método más largo de la clase. ¿Qué pasa en el browser cuando ap
 Aparece una advertencia que indica todos los métodos que tienen #longMethodSize número de sentencias, no cuenta el número de líneas, sino de sentencias que ejecuta. Es conveniente hacer métodos más modularizados. 
 c. Busque un método que haga uso de variables temporales, y dos métodos que usen de instancia. Discuta con el ayudante sobre el uso que se les da a las variables temporales.
 Las variables temporales sirven para la ejecución de un método, pero no se conservan fuera de éste. Se las utiliza cuando se necesita guardar un valor específico en un momento dado, en cambio las de instancia, si se modifican, se mantiene tal valor, el estado del objeto.
+
+9 - 
+1. 
+x:=2*5factorial. 5factorial=120. x=2*120. x=240
+y:=x+1. 240+1. y=241
+|n|n :=n+1. El selector + no conoce al receptor n. n es nil.
+|n m|n:=4.m:=1.^(n+m+x+y). Ejecuta sentencias en orden: n=4. m=1. La expresión del paréntesis conoce a las variables n y m porque es la tercer sentencia que se ejecuta. 241+240+1+4, devuelve 486.
+5timesRepeat:[x:=x+y].x. 1)x=481 2)x=722 3)x=963 4)x=1204 5)x=1445. x=1445.
+('objeto'at:2) isVowel. 2.b. devuelve false. Funciona porque tiene paréntesis la primer expresión. Si no los tuviera, preguntaría si 2 es vocal, para luego evaluar objeto. 
