@@ -325,3 +325,32 @@ tri hipotenusa.
 tri perimetro.
 tri perimetroMayor: 15.
  
+3.
+TODO EN PLAYGROUND
+a) unWallpost:= Wallpost new.
+b) [unWallpost likes < 20] whileTrue: [unWallpost like].
+c) otroWallpost:= Wallpost new.
+
+unWallpost likes. (con Print)
+unWallpost featured. (con Print)
+unWallpost text: 'anda la osa'.
+
+otroWallpost text: 'la puerca esta en la pocilga'.
+otroWallpost likes. (con Print)
+otroWallpost featured. (con Print)
+
+d) unWallpost likes > otroWallpost likes
+ifTrue: [ unWallpost text ]
+ifFalse: [ otroWallpost text ].
+
+e) unWallpost likes > 100
+ifTrue:[ unWallpost featured: true].
+
+f) (unWallpost likes > 20) & (otroWallpost likes > 20).
+
+g) rejunteWallpost:= Wallpost new.
+rejunteWallpost text: unWallpost text, otroWallpost text; likes: unWallpost likes + otroWallpost likes; featured: unWallpost featured | otroWallpost featured.
+
+rejunteWallpost text. (con Print)
+rejunteWallpost likes. (con Print)
+rejunteWallpost featured. (con Print)
