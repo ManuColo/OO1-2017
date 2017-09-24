@@ -354,3 +354,16 @@ rejunteWallpost text: unWallpost text, otroWallpost text; likes: unWallpost like
 rejunteWallpost text. (con Print)
 rejunteWallpost likes. (con Print)
 rejunteWallpost featured. (con Print)
+
+4.
+EN PLAYGROUND
+|sum aNumber|
+aNumber:=7.  
+sum:=0.
+1 to: aNumber do: [:i | sum:= sum + i]. sum.
+
+5.
+Dada la siguiente expresión: 3 + 5 > 6 ifTrue:[4] ifFalse:[5]
+¿Qué valor se obtiene al ser evaluada? ¿Cómo la modificaría para obtener el valor 8?
+(3+5)=8, 8>6=true. Se obtiene 4.
+3 + (5 > 6 ifTrue:[4] ifFalse:[5]). Evalúa primero paréntesis. 5>6=false. Del falso se obtiene 5. 3+5=8. 
