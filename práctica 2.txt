@@ -288,3 +288,40 @@ y:=x+1. 240+1. y=241
 |n m|n:=4.m:=1.^(n+m+x+y). Ejecuta sentencias en orden: n=4. m=1. La expresión del paréntesis conoce a las variables n y m porque es la tercer sentencia que se ejecuta. 241+240+1+4, devuelve 486.
 5timesRepeat:[x:=x+y].x. 1)x=481 2)x=722 3)x=963 4)x=1204 5)x=1445. x=1445.
 ('objeto'at:2) isVowel. 2.b. devuelve false. Funciona porque tiene paréntesis la primer expresión. Si no los tuviera, preguntaría si 2 es vocal, para luego evaluar objeto. 
+
+2.
+Object subclass: #TrianguloRectangulo
+instanceVariableNames: 'base altura'
+classVariableNames: ''
+package: 'Triangulos'.
+
+#altura
+	^altura.
+#altura: aHeight
+	altura:= aHeight.
+#base
+	^base.
+#base: aLarge
+	base:= aLarge.
+#altura: aHeight base: aLarge
+	self altura: aHeight; base: aLarge.
+#superficie
+"Base por altura sobre 2"
+	^(self base * self altura)/2.
+#hipotenusa
+  "raiz cuadrada de la suma del cuadrado de los catetos"
+  ^ (self base squared + self altura squared) sqrt.
+#perimetro
+"lado mas lado mas lado"
+  ^ (self base + self altura + self hipotenusa).
+#perimetroMayor: unPerimetro
+ "true si el perímetro es mayor a unPerimetro o false en caso contrario"
+  ^ self perimetro > unPerimetro.
+##############  Comandos de prueba
+tri:= TrianguloRectangulo new.
+tri altura: 3 base: 4. 
+tri superficie.
+tri hipotenusa.
+tri perimetro.
+tri perimetroMayor: 15.
+ 
