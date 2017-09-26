@@ -88,7 +88,7 @@ MÉTODO DE CLASE:
   #regularPatrol
   "patrol hace un cuadrado de lado 10 rotado 45 grados alrededor de sniper,
     sniper en el centro gira en sentido de las agujas del reloj."
-      self patrol rotatedSquareOfSize: 10 at: ((self sniper position x - 10)@(self sniper position y)).
+      self patrol rotatedSquareOfSize: 9 at: ((self sniper position x - 9)@(self sniper position y)).
       self sniper spin.
   
   
@@ -172,10 +172,10 @@ newEast: robot1 north: robot2 south: robot3 west: robot4
 
 #regularWatch
 "Los robots realizan un cuadrado de lado 3 en su correspondiente flanco."
-self eastWatch brushDown; squareOfSize: 3.
-self northWatch brushDown; squareOfSize: 3.
-self southWatch brushDown; squareOfSize: 3.
-self westWatch brushDown; squareOfSize: 3.
+self eastWatch brushDown; squareOfSize: 2.
+self northWatch brushDown; squareOfSize: 2.
+self southWatch brushDown; squareOfSize: 2.
+self westWatch brushDown; squareOfSize: 2.
 
 Defino métodos para posicionar los robots para el método siguiente
 #posEast
@@ -184,11 +184,11 @@ Defino métodos para posicionar los robots para el método siguiente
 	self northWatch position: (21@15); east.
 #posSouth
 	self southWatch position: (21@34); east.
-#posSouth
-	self southWatch position: (21@34); east.
+#posWest
+	self westWatch position: (34@31); north.
 	
 #paranoicWatch
-"cada robot realiza un recorrido del flanco completo, dibujando un rectangulo de 4x10"
+"Cada robot realiza un recorrido del flanco completo, dibujando un rectangulo de 4x10"
 self posEast; posNorth; posSouth; posWest.   
 2 timesRepeat: [ self eastWatch trace: 9; quarter; trace:3; quarter.
 		self northWatch trace: 9; quarter; trace:3; quarter.
@@ -217,6 +217,9 @@ Object subclass: #Wallpost
 #likes
     "Retorna la cantidad de “me gusta”"
     ^ likes.
+#likes: aLike
+    "Setea los likes de la publicación"
+    likes:= aLike.
 #like
     "Incrementa la cantidad de likes en uno"
     self likes: self likes + 1.
