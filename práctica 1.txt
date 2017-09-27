@@ -102,16 +102,82 @@ Ej 11 -
 
 Entrega Visado 1 (P. Reducido):
 
-#letraO: altura
-    self north.
-    2 timesRepeat: [
-        self direction: self direction + 45.
-        self trace: 2.
-        self direction: self direction + 45.
-        self trace: 2.
-        self direction: self direction + 45.
-        self trace: 2.
-        self direction: self direction + 45.
-        self trace: altura - 1. ].
+Punto 1:
+
+1 #letraO: altura
+2    self north.
+3    2 timesRepeat: [
+4        self direction: self direction + 45.
+5        self trace: 2.
+6        self direction: self direction + 45.
+7        self trace: 2.
+8        self direction: self direction + 45.
+9        self trace: 2.
+10        self direction: self direction + 45.
+11        self trace: altura - 1. ].
 	
+
+Punto 2:
+
+Línea 2:
+Receptor: self
+Mensaje: north
+
+Línea 3:
+Receptor: 2
+Mensaje: timesRepeat:
+Parámetro: self direction: self direction + 45.
+        self trace: 2.
+        self direction: self direction + 45.
+        self trace: 2.
+        self direction: self direction + 45.
+        self trace: 2.
+        self direction: self direction + 45.
+        self trace: altura - 1.
+
+Línea 4:
+Receptor: self
+Mensaje: direction:
+Parámetro: self direction + 45
+
+Línea 5:
+Receptor: self
+Mensaje: trace:
+Parámetro: 2
+
+Línea 6:
+Receptor: self
+Mensaje: direction:
+Parámetro: self direction + 45
+
+Línea 7:
+Receptor: self
+Mensaje: trace:
+Parámetro: 2
+
+Línea 8:
+Receptor: self
+Mensaje: direction:
+Parámetro: self direction + 45
+
+Línea 9:
+Receptor: self
+Mensaje: trace:
+Parámetro: 2
+
+Línea 10:
+Receptor: self
+Mensaje: direction:
+Parámetro: self direction + 45
+
+Línea 11:
+Receptor: self
+Mensaje: trace:
+Parámetro: altura - 1
+
+Punto 3:
+Linea 4
+self direction
+self direction + 45
+self direction: self direction + 45
 
