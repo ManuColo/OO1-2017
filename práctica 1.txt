@@ -99,3 +99,19 @@ Ej 10 -
   ].
 
 Ej 11 -
+
+Entrega Visado 1 (P. Reducido):
+
+#letraO: altura
+    self north.
+    2 timesRepeat: [
+        self direction: self direction + 45.
+        self trace: 2.
+        self direction: self direction + 45.
+        self trace: 2.
+        self direction: self direction + 45.
+        self trace: 2.
+        self direction: self direction + 45.
+        self trace: altura - 1. ].
+	
+
