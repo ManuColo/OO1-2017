@@ -370,3 +370,30 @@ Dada la siguiente expresión: 3 + 5 > 6 ifTrue:[4] ifFalse:[5]
 ¿Qué valor se obtiene al ser evaluada? ¿Cómo la modificaría para obtener el valor 8?
 (3+5)=8, 8>6=true. Se obtiene 4.
 3 + (5 > 6 ifTrue:[4] ifFalse:[5]). Evalúa primero paréntesis. 5>6=false. Del falso se obtiene 5. 3+5=8. 
+
+11 - 
+DEFINICIÓN CLASE
+Battery subclass: #EnergyRecoveryCell
+instanceVariableNames: 'unidadesConsumidas'
+classVariableNames: ''
+package: 'BotArena-Modules'
+
+#unidadesConsumidas
+	^ unidadesConsumidas.
+#unidadesConsumidas: amount
+	unidadesConsumidas:= amount.
+#consume: amount 
+	super consume: amount.
+	self charge: self charge + ((self unidadesConsumidas + amount) // 10); 
+	unidadesConsumidas: (self unidadesConsumidas + amount) \\ 10.
+#initialize
+	super initialize.
+	self charge:100; unidadesConsumidas: 0.
+	
+##############  Comandos de prueba
+
+robot battery: EnergyRecoveryCell new.
+robot battery charge.(con Print) 
+robot battery unidadesConsumidas. (con Print)
+robot move: 12. 
+robot move:5. (*2 y revisar carga y unidades consumidas entre medio y al final, porque es acumulativo).
