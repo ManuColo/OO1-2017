@@ -397,3 +397,53 @@ robot battery charge.(con Print)
 robot battery unidadesConsumidas. (con Print)
 robot move: 12. 
 robot move:5. (*2 y revisar carga y unidades consumidas entre medio y al final, porque es acumulativo).
+
+############# Entrega Visado 1 Promoción 2016 ###########
+Entrega Promoción
+
+OTFRobot subclass: #WalkingBrushRobot
+    instanceVariableNames: 'battery state distanceTotal distanceBrushed'
+    classVariableNames: ''
+    package: 'BotArena-Robots'
+
+distanceTotal
+    ^ distanceTotal.
+
+distanceTotal: aDistance
+    distanceTotal := aDistance.
+
+distanceBrushed: aDistance
+    distanceBrushed := aDistance.
+
+distanceBrushed
+    ^ distanceBrushed.
+
+newWithPosition: aPosition
+    ^ self new
+        position: aPosition;
+        battery: Battery fullyCharged;
+        distanceTotal: 0;
+        distanceBrushed: 0;
+        yourself
+
+initialize
+    super initialize.    
+    self state: self initialState.
+    self headingFromDirection: 0.
+    self distanceTotal: 0.
+    self distanceBrushed: 0.
+    ^ self
+
+move: aDistance
+    (self battery canConsume: aDistance)
+        ifTrue: [ self
+                        setStepsToGo: aDistance;
+                        distanceTotal: (self distanceTotal + aDistance).
+                    self isBrushDown ifTrue: [
+                            self distanceBrushed: (self distanceBrushed + aDistance).
+                        ]
+                    ]
+        ifFalse: [ ChargeBatteryError signal ]
+
+moveDrawRatio
+    ^ (self distanceBrushed / self distanceTotal).
