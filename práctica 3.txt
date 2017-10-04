@@ -1,0 +1,34 @@
+2 - 
+Object subclass: #Document
+	instanceVariableNames: 'title body'
+	classVariableNames: ''
+	package: 'Document'
+  
+#title
+  ^ title.
+  
+#title: aTitle
+  title := aTitle.
+  
+#body
+  ^ body.
+
+#body: aBody
+  body := aBody.
+
+#size
+  "retorna el tamaño del documento que es la suma del tamaño del título, el
+  tamaño del body y el overhead del documento que siempre es el 10% del body"
+
+  ^ self body size + self title size + (self body size * 0.1).
+
+#addLine: aLine
+  "agrega (concatena) al body la linea aLine"
+	self body: self body, aLine.
+
+Método de clase
+#titled: aString
+  "Retorna una nueva instancia de Document, cuyo título es aString"
+
+  ^ self new title: aString;
+		body:''.
