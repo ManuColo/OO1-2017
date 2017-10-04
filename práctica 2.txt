@@ -438,3 +438,33 @@ move: aDistance
 
 moveDrawRatio
     ^ (self distanceBrushed / self distanceTotal).
+    
+    
+Visado 1 Promoción 2017
+Modifique el Wallpost para que responda a topLikes retornando la cantidad máxima histórica de likes del post
+
+Object subclass: #Wallpost
+	instanceVariableNames: 'likes featured text topLikes'
+	classVariableNames: ''
+	package: 'WallPost'
+	
+#topLikes
+   "Retorna la cantidad máxima historica de likes"
+	^ topLikes.
+
+#topLikes: aCant
+   "Retorna la cantidad máxima historica de likes"
+	topLikes := aCant.
+
+#like
+   "Incrementa la cantidad de likes en uno"
+	self likes: self likes + 1.
+	self topLikes: ((self likes) max: (self topLikes)).
+
+#initialize
+"Inicializa el estado de las variables de instancia del Wallpost. Luego de la invocación el Wallpost debe tener como texto: “Undefined post”, no debe estar marcado como destacado y la cantidad de “Me gusta” deben ser 0."
+    self
+        text: 'Undefined post';
+        featured: false;
+		  likes: 0;
+		  topLikes: 0.
