@@ -391,7 +391,7 @@ package: 'BotArena-Modules'
 	
 ##############  Comandos de prueba
 
-robot battery: EnergyRecoveryCell new.
+robot battery: EnergyRecoveryCell fullyCharged.
 robot battery charge.(con Print) 
 robot battery unidadesConsumidas. (con Print)
 robot move: 12. 
