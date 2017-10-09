@@ -1,3 +1,13 @@
+1 - 
+#= en Object: Responde si el receptor y el argumento representan el mismo objeto. Se puede redefinir en cualquier subclase. En su declaración invoca el #==.
+#== en ProtoObject: Primitivo. Responde si el receptor y el argumento son los mismos objeto (tiene el mismo puntero de objeto). No se redefine el mensaje == en cualquier otra clase! Esencial. No hay búsqueda. No se puede anular en ninguna subclase.
+
+Que un método esté en el protocolo private implicaría que solo son accesibles desde la clase que los define.
+
+La implimentacion de initialize es vacía. Las subclases pueden redefinir este método para realizar inicializaciones en la creación de instancias. 
+
+Flechas hacia arriba indican que ese mensaje está definido en su clase padre, y hacia abajo, que está definido en una de sus subclases.
+
 2 - 
 Object subclass: #Document
 	instanceVariableNames: 'title body'
@@ -32,3 +42,8 @@ Método de clase
 
   ^ self new title: aString;
 		body:''.
+
+a. doc es una instancia de la clase Document.
+b. es de la clase Float.
+c. devuelve la clase a la que pertenece la instancia doc. Devuelve Document.
+d. la línea 8 evalúa si la clase de la instancia doc es Document.
