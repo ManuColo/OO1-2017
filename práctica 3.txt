@@ -57,3 +57,10 @@ rab := RechargeableAlkalineBattery new.
 rab consume: 70. "La bateria queda en 30"
 rab consume: 35. "Imprime 'Bateria descargada', la bateria queda en 30"
 
+4 - Object subclass: #Profile
+	instanceVariableNames: 'name likes posts karma'
+	classVariableNames: ''
+	package: 'ProfileAndKarma'
+	
+#like
+  self likes: self likes + 1.
