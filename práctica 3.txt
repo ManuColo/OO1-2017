@@ -47,3 +47,13 @@ a. doc es una instancia de la clase Document.
 b. es de la clase Float.
 c. devuelve la clase a la que pertenece la instancia doc. Devuelve Document.
 d. la línea 8 evalúa si la clase de la instancia doc es Document.
+
+3 - |nrb rab|
+nrb = NonRechargeableBattery new.
+nrb consume: 70. "La bateria queda en 30"
+nrb consume: 35. "Imprime 'Bateria descargada', la bateria queda en 30"
+
+rab := RechargeableAlkalineBattery new.
+rab consume: 70. "La bateria queda en 30"
+rab consume: 35. "Imprime 'Bateria descargada', la bateria queda en 30"
+
