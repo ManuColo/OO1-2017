@@ -112,3 +112,13 @@ ifTrue: [ self karma: self karma + 2 ].
 ifTrue: [ self karma: self karma + 3 ].
 self posts: 0; likes: 0.
 
+-------EN PLAYGROUND------------------------
+user:= Profile newProfile: 'Pepe'.
+user name.
+user posts.
+user likes.
+user karma.
+user like.
+user post.
+user calcKarma. 
+
