@@ -61,6 +61,54 @@ rab consume: 35. "Imprime 'Recharging alkaline battery...', la bateria queda en 
 	instanceVariableNames: 'name likes posts karma'
 	classVariableNames: ''
 	package: 'ProfileAndKarma'
-	
+
+#name: aName
+ name:= aName.
+
+#name
+ ^name.
+
+#likes: aNumber
+ likes:= aNumber.
+ 
+#likes
+ ^likes.
+
+#posts: aNumber
+ posts:= aNumber.
+
+#posts
+ ^posts.
+
+#karma: aNumber
+ karma:= aNumber.
+
+#karma
+ ^karma.
+
 #like
   self likes: self likes + 1.
+
+#post
+ self posts: self posts + 1.
+
+#initialize
+	^self name: ' '; posts: 0; likes: 0; karma: 0.
+
+Profile class>> newProfile: aName
+^self new
+name: aName;
+posts: 0;
+likes: 0;
+karma: 0;
+yourself. 
+
+#calcKarma
+|aux|
+aux:= (self posts // self likes) asInteger.
+(aux between: 31 and: 50)
+ifTrue: [ self karma: self karma + 2 ].
+(aux > 51)
+ifTrue: [ self karma: self karma + 3 ].
+self posts: 0; likes: 0.
+
