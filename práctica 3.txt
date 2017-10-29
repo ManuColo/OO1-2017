@@ -122,3 +122,50 @@ user like.
 user post.
 user calcKarma. 
 
+5 - 
+Profile subclass: #Gold
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'ProfileAndKarma'
+	
+Profile subclass: #Silver
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'RedSoc'
+	
+Profile>> #calcKarma
+	  ^ self subclassResponsibility
+	  
+Gold>> #calcKarma
+	|aux|
+	aux:= (posts * likes / Float halfPi) asInteger.
+	(aux between: 31 and: 50)
+	ifTrue: [ self karma: self karma + 2 ].
+	(aux > 51)
+	ifTrue: [ self karma: self karma + 3 ].
+	self posts: 0; likes: 0.
+Silver>> #calcKarma
+	|aux|
+	aux:= (posts * likes / Float pi) asInteger.
+	(aux between: 31 and: 50)
+	ifTrue: [ self karma: self karma + 2 ].
+	(aux > 51)
+	ifTrue: [ self karma: self karma + 3 ].
+	self posts: 0; likes: 0.
+	
+-------EN PLAYGROUND------------------------
+userA:= Gold new.
+userA posts.
+userA likes.
+userA karma.
+userA like.
+userA post.
+userA calcKarma. 
+
+userB:= Silver new.
+userB posts.
+userB likes.
+userB karma.
+userB like.
+userB post.
+userB calcKarma.
