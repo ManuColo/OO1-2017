@@ -169,3 +169,11 @@ userB karma.
 userB like.
 userB post.
 userB calcKarma.
+
+1. ¿Qué modificaciones o extensiones debe hacer a la resolución del ejercicio 4?
+Se deben agregar las clase Gold y Siver, extendidas de usuario, y modificar el método #calcKarma, para que lo realicen directamente las subclases de Profile.
+2. ¿Qué comportamiento tienen en común los usuarios Gold y Silver?
+El propio de Profile.
+3. La superclase de ambos usuarios, ¿puede instanciarse?
+Si, podría porque tiene su método de clase y su inicialize, pero no podría calcular el Karma.
+4. En el caso en que no pueda instanciarse, ¿cuál es la manera en Smalltalk de definir una clase de ese tipo?
