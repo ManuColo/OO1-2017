@@ -281,15 +281,20 @@ SistemaMonitoreo>> #initialize
 	
 SistemaMonitoreo>> #addAbsoluteTemperature: aValue clock: aNumber
 "agrega una medicion absoluta"
-	self mediciones addLast: (Medicion newWithValue: aValue and: aNumber).
+	self mediciones add: (Medicion newWithValue: aValue and: aNumber).
 	
 SistemaMonitoreo>> #currentTemperature
 "retorna la temperatura actual"
 	^self mediciones last.
+	
+SistemaMonitoreo>> #allTemperatureValues
+"retorna una colección con los valores de temperatura"
+	^self mediciones do: [:med | Transcript show: med absValue].
 	
 -------EN PLAYGROUND------------------------
 
 medicion:= SistemaMonitoreo new.
 medicion mediciones.
 medicion addAbsoluteTemperature: 80 clock: 1.
-medicion currentTemperature. 
+medicion currentTemperature.
+medicion allTemperatureValues.
