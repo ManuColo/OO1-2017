@@ -286,3 +286,10 @@ SistemaMonitoreo>> #addAbsoluteTemperature: aValue clock: aNumber
 SistemaMonitoreo>> #currentTemperature
 "retorna la temperatura actual"
 	^self mediciones last.
+	
+-------EN PLAYGROUND------------------------
+
+medicion:= SistemaMonitoreo new.
+medicion mediciones.
+medicion addAbsoluteTemperature: 80 clock: 1.
+medicion currentTemperature. 
