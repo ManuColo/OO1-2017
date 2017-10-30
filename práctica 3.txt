@@ -2,9 +2,11 @@
 #= en Object: Responde si el receptor y el argumento representan el mismo objeto. Se puede redefinir en cualquier subclase. En su declaración invoca el #==.
 #== en ProtoObject: Primitivo. Responde si el receptor y el argumento son los mismos objeto (tiene el mismo puntero de objeto). No se redefine el mensaje == en cualquier otra clase! Esencial. No hay búsqueda. No se puede anular en ninguna subclase.
 
-Que un método esté en el protocolo private implicaría que solo son accesibles desde la clase que los define.
+No se puede saber, desde la ejecución, si se ejecuta el #= o el #==. Sólo se puede saber si se hace debug. 
 
-La implimentacion de initialize es vacía. Las subclases pueden redefinir este método para realizar inicializaciones en la creación de instancias. 
+Que un método esté en el protocolo private implicaría que solo son accesibles desde la clase que los define. En smalltalk todos los métodos son públicos por defecto. Los privados sólo indican que no deberían modificarse, pero no lo evitan de hecho.
+
+La implementacion de initialize es vacía. Las subclases pueden redefinir este método para realizar inicializaciones en la creación de instancias.Esto permite que si una clase no lo define, pueda instanciarse igual un objeto, ya que invoca a un initialize igual. 
 
 Flechas hacia arriba indican que ese mensaje está definido en su clase padre, y hacia abajo, que está definido en una de sus subclases.
 
@@ -177,3 +179,44 @@ El propio de Profile.
 3. La superclase de ambos usuarios, ¿puede instanciarse?
 Si, podría porque tiene su método de clase y su inicialize, pero no podría calcular el Karma.
 4. En el caso en que no pueda instanciarse, ¿cuál es la manera en Smalltalk de definir una clase de ese tipo?
+Abstracta? Se crea vacía, sin métodos. 
+
+6-
+Object subclass: #Carrito
+	instanceVariableNames: 'cantProductos totalCompra'
+	classVariableNames: ''
+	package: 'Carrito'
+
+#cantProductos: aNumber
+ cantProductos:= aNumber. 
+ 
+#cantProductos
+ ^ cantProductos. 
+ 
+#totalCompra: aNumber
+ totalCompra:= aNumber.
+
+#totalCompra
+ ^ totalCompra. 
+ 
+#initialize
+ ^self cantProductos: 0; totalCompra: 0.
+
+#addProd: aPrice
+	self cantProductos: self cantProductos + 1.
+	self totalCompra: self totalCompra + aPrice.
+
+#calcTotal
+	(self cantProductos > 10)
+	ifTrue: [ self totalCompra: self totalCompra - (self totalCompra * 0.1) ].
+	(self totalCompra > 10000)
+	ifTrue: [ self totalCompra: self totalCompra - (self totalCompra * 0.05)].
+	
+-------EN PLAYGROUND------------------------
+
+compra:= Carrito new.
+compra cantProductos.
+compra totalCompra.
+compra addProd: 100000.
+compra calcTotal.  
+
