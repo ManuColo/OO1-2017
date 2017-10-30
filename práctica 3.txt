@@ -251,21 +251,15 @@ Medicion subclass: #MedicionAbsoluta
 	package: 'Mediciones'
 
 Medicion subclass: #MedicionRelativa
-	instanceVariableNames: ''
+	instanceVariableNames: 'real'
 	classVariableNames: ''
 	package: 'Mediciones'
 	
-Medicion>> #absValue: aValue
-	absValue:= aValue.
+Medicion>> #value: aValue
+	value:= aValue.
 
-Medicion>> #absValue
-	^absValue.
-
-Medicion>> #relValue: aValue
-	relValue:= aValue.
-
-Medicion>> #relValue
-	^relValue.
+Medicion>> #value
+	^value.
 	
 Medicion>> #timestamp: aClock
 	timestamp:= aClock.
@@ -273,18 +267,17 @@ Medicion>> #timestamp: aClock
 Medicion>> #timestamp
 	^timestamp.
 
-Medicion class>> newWithValue: aValue and: aClock
+MedicionAbsoluta class>> newWithValue: aValue and: aClock
 	^self new
-	absValue: aValue;
-	relValue:0;
+	value: aValue;
 	timestamp: aClock;
 	yourself.
-
-Medicion class>> newWithValue: aValue and:otherValue and: aClock
+	
+MedicionRelativa class>> newWithValue: aValue and: otherValue and: aClock
 	^self new
-	absValue: aValue;
-	relValue: otherValue;
+	value: aValue;
 	timestamp: aClock;
+	real: otherValue;
 	yourself.
 
 SistemaMonitoreo>> #mediciones: aCollection
@@ -298,23 +291,22 @@ SistemaMonitoreo>> #initialize
 	
 SistemaMonitoreo>> #addAbsoluteTemperature: aValue clock: aNumber
 "agrega una medicion absoluta"
-	self mediciones add: (Medicion newWithValue: aValue and: aNumber).
+	self mediciones add: (MedicionAbsoluta newWithValue: aValue and: aNumber).
 	
 SistemaMonitoreo>> #addDiferentialTemperature: aValue clock: aNumber
 "agrega una medicion diferencial"
-	|aux act|
-	aux:= self mediciones last absValue.
-	act:= aux + aValue.
-	self mediciones addLast:(Medicion newWithValue: act and: aValue and: aNumber)
-
+	|ultimaAbsoluta act|
+	ultimaAbsoluta:= self mediciones detect: [:medicion | medicion class = MedicionAbsoluta ].
+	act:= ultimaAbsoluta value + aValue.
+	self mediciones addLast:(MedicionRelativa newWithValue: act and: aValue and: aNumber)
 	
 SistemaMonitoreo>> #currentTemperature
 "retorna la temperatura actual"
-	^self mediciones last absValue.
+	^self mediciones last value.
 	
 SistemaMonitoreo>> #allTemperatureValues
 "retorna una colección con los valores de temperatura"
-	^self mediciones do: [:med | Transcript show: med absValue].
+	^self mediciones do: [:med | Transcript show: med value].
 	
 -------EN PLAYGROUND------------------------
 
