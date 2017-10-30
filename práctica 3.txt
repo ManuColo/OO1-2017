@@ -224,7 +224,7 @@ Se definen tres constructores:
 #withBattery - instancia e inicializa un robot con la carga de su batería llena.
 #withoutBattery - instancia e inicializa un robot con una EndlessBattery, sin carga.
 El protocolo en común de Battery y EndlessBattery es consume. Aunque los métodos que contiene, no realizan lo mismo.
-Cuando se puede enviar el mismo mensaje a distintos objetos, existe polimorfismo. Cada objeto sabe cómo debe ejecutar su método particular. No necesariamente los objetos deben pertenecer a la misma jerarquía, sólo deben conocer el método, que podría estar definido en su propia clase, o en su propia jerarquía también.
+Existe polimorfismo cuando un mismo mensaje responde diferente, dependiendo de la entidad que lo invoque. Cada objeto sabe cómo debe ejecutar su método particular. No necesariamente los objetos deben pertenecer a la misma jerarquía, sólo deben conocer el método, que podría estar definido en su propia clase, o puede modificar uno definido en su propia jerarquía también. El método se comporta de una determinada manera, dependiendo de quién lo invoque.
 WalkingBrushRobot hereda de:
 ProtoObject : no tiene variables de instancia
 Object : no tiene variables de instancia
