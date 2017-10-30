@@ -133,7 +133,7 @@ Profile subclass: #Gold
 Profile subclass: #Silver
 	instanceVariableNames: ''
 	classVariableNames: ''
-	package: 'RedSoc'
+	package: 'ProfileAndKarma'
 	
 Profile>> #calcKarma
 	  ^ self subclassResponsibility
