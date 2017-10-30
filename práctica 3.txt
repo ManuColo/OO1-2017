@@ -220,3 +220,22 @@ compra totalCompra.
 compra addProd: 100000.
 compra calcTotal.  
 
+7-
+No sería necesaria la redefinición de #position en WalkingBrushRobot, porque se implementa igual en BGSRobot, y se invocaría igual.
+Se definen tres constructores:
+#newWithPosition: - instancia e inicializa al robot en una posición que llega por parámetro, con la batería llena.
+#withBattery - instancia e inicializa un robot con la carga de su batería llena.
+#withoutBattery - instancia e inicializa un robot con una EndlessBattery, sin carga.
+El protocolo en común de Battery y EndlessBattery es consume. Aunque los métodos que contiene, no realizan lo mismo.
+Cuando se puede enviar el mismo mensaje a distintos objetos, existe polimorfismo. Cada objeto sabe cómo debe ejecutar su método particular. No necesariamente los objetos deben pertenecer a la misma jerarquía, sólo deben conocer el método, que podría estar definido en su propia clase, o en su propia jerarquía también.
+WalkingBrushRobot hereda de:
+ProtoObject : no tiene variables de instancia
+Object : no tiene variables de instancia
+BGSRobot :'id body'
+OTFRobot : 'commands semaphore'
+En #body: se asigna a la variable body un aRobotBody, y setea la variable bot de body como self. El método #bodyClass devuelve un objeto de la clase BGSRobotBody, que tiene como variables de instancia 'bot cell heading partsDict'. 
+La variable se inicializa seteando el body con el resultado del llamado al método #bodyClass new, que devuelve una instancia de BGSRobotBody.
+Para inicializar con otros tipos de body, podría cambiar el objeto al que hace referencia bodyClass. Tambíen podría definir un constructor distinto, que llame a otra clase, no a bodyClass.
+
+
+
