@@ -208,9 +208,9 @@ Object subclass: #Carrito
 
 #calcTotal
 	(self cantProductos > 10)
-	ifTrue: [ self totalCompra: self totalCompra - (self totalCompra * 0.1) ].
+	ifTrue: [ self totalCompra: self totalCompra - (self totalCompra * 10 percent) ].
 	(self totalCompra > 10000)
-	ifTrue: [ self totalCompra: self totalCompra - (self totalCompra * 0.05)].
+	ifTrue: [ self totalCompra: self totalCompra - (self totalCompra * 5 percent)].
 	
 -------EN PLAYGROUND------------------------
 
