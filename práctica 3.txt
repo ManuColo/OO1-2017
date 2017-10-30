@@ -241,15 +241,21 @@ Object subclass: #SistemaMonitoreo
 	package: 'Mediciones'
 	
 SistemaMonitoreo subclass: #Medicion
-	instanceVariableNames: 'value timestamp'
+	instanceVariableNames: 'absValue relValue timestamp'
 	classVariableNames: ''
 	package: 'Mediciones'
 	
-Medicion>> #value: aValue
-	value:= aValue.
+Medicion>> #absValue: aValue
+	absValue:= aValue.
 
-Medicion>> #value
-	^value.
+Medicion>> #absValue
+	^absValue.
+
+Medicion>> #relValue: aValue
+	relValue:= aValue.
+
+Medicion>> #relValue
+	^relValue.
 	
 Medicion>> #timestamp: aClock
 	timestamp:= aClock.
@@ -259,7 +265,8 @@ Medicion>> #timestamp
 
 Medicion class>> newWithValue: aValue and: aClock
 	^self new
-	value: aValue;
+	absValue: aValue;
+	relValue:0;
 	timestamp: aClock;
 	yourself.
 	
@@ -279,22 +286,23 @@ SistemaMonitoreo>> #addAbsoluteTemperature: aValue clock: aNumber
 SistemaMonitoreo>> #addDiferentialTemperature: aValue clock: aNumber
 "agrega una medicion diferencial"
 	|aux act|
-	aux:= self mediciones last value.
+	aux:= self mediciones last absValue.
 	act:= aux + aNumber.
 	self mediciones addLast:(Medicion newWithValue: act and: aNumber)
 	
 SistemaMonitoreo>> #currentTemperature
 "retorna la temperatura actual"
-	^self mediciones last.
+	^self mediciones last absValue.
 	
 SistemaMonitoreo>> #allTemperatureValues
 "retorna una colección con los valores de temperatura"
-	^self mediciones do: [:med | Transcript show: med value].
+	^self mediciones do: [:med | Transcript show: med absValue].
 	
 -------EN PLAYGROUND------------------------
 
 medicion:= SistemaMonitoreo new.
 medicion mediciones.
 medicion addAbsoluteTemperature: 80 clock: 1.
+medicion addDiferentialTemperature: 70 clock: 2.
 medicion currentTemperature.
 medicion allTemperatureValues.
