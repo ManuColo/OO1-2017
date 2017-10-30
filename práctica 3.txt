@@ -234,5 +234,49 @@ En #body: se asigna a la variable body un aRobotBody, y setea la variable bot de
 La variable se inicializa seteando el body con el resultado del llamado al método #bodyClass new, que devuelve una instancia de BGSRobotBody.
 Para inicializar con otros tipos de body, podría cambiar el objeto al que hace referencia bodyClass. Tambíen podría definir un constructor distinto, que llame a otra clase, no a bodyClass.
 
+8-
+Object subclass: #SistemaMonitoreo
+	instanceVariableNames: 'mediciones'
+	classVariableNames: ''
+	package: 'Mediciones'
+	
+SistemaMonitoreo subclass: #Medicion
+	instanceVariableNames: 'absValue relValue timestamp'
+	classVariableNames: ''
+	package: 'Mediciones'
+	
+Medicion>> #absValue: aValue
+	absValue:= aValue.
 
+Medicion>> #absValue
+	^absValue.
+	
+Medicion>> #relValue: aValue
+	relValue:= aValue.
 
+Medicion>> #relValue
+	^relValue.
+	
+Medicion>> #timestamp: aClock
+	timestamp:= aClock.
+
+Medicion>> #timestamp
+	^timestamp.
+
+Medicion class>> newWithValue: aValue and: aClock
+	^self new
+	absValue: aValue;
+	relValue: 0;
+	timestamp: aClock;
+	yourself.
+	
+SistemaMonitoreo>> #initialize
+	mediciones:= OrderedCollection new.
+	
+SistemaMonitoreo>> #addAbsoluteTemperature: aValue clock: aNumber
+"agrega una medicion absoluta"
+	self mediciones add: (Medicion newWithValue: aValue and: aNumber).
+	
+SistemaMonitoreo>> #currentTemperature
+"retorna la temperatura actual"
+	^self mediciones last.
