@@ -248,7 +248,7 @@ SistemaMonitoreo subclass: #Medicion
 Medicion>> #value: aValue
 	value:= aValue.
 
-Medicion>> #absValue
+Medicion>> #value
 	^value.
 	
 Medicion>> #timestamp: aClock
@@ -259,8 +259,7 @@ Medicion>> #timestamp
 
 Medicion class>> newWithValue: aValue and: aClock
 	^self new
-	absValue: aValue;
-	relValue: 0;
+	value: aValue;
 	timestamp: aClock;
 	yourself.
 	
@@ -269,7 +268,7 @@ SistemaMonitoreo>> #mediciones: aCollection
 
 SistemaMonitoreo>> #mediciones
 	^mediciones.
-	
+
 SistemaMonitoreo>> #initialize
 	mediciones:= OrderedCollection new.
 	
