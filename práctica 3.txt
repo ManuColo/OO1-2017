@@ -311,6 +311,6 @@ SistemaMonitoreo>> #allTemperatureValues
 medicion:= SistemaMonitoreo new.
 medicion mediciones.
 medicion addAbsoluteTemperature: 80 clock: 1.
-medicion addDiferentialTemperature: 70 clock: 2.
+medicion addDiferentialTemperature: 0.3 clock: 2.
 medicion currentTemperature.
 medicion allTemperatureValues.
