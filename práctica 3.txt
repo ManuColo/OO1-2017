@@ -240,8 +240,18 @@ Object subclass: #SistemaMonitoreo
 	classVariableNames: ''
 	package: 'Mediciones'
 	
-SistemaMonitoreo subclass: #Medicion
-	instanceVariableNames: 'absValue relValue timestamp'
+Object subclass: #Medicion
+	instanceVariableNames: 'value timestamp'
+	classVariableNames: ''
+	package: 'Mediciones'
+	
+Medicion subclass: #MedicionAbsoluta
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Mediciones'
+
+Medicion subclass: #MedicionRelativa
+	instanceVariableNames: ''
 	classVariableNames: ''
 	package: 'Mediciones'
 	
