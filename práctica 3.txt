@@ -136,26 +136,21 @@ Profile subclass: #Silver
 	classVariableNames: ''
 	package: 'RedSoc'
 	
-Profile>> #calcKarma
-	  ^ self subclassResponsibility
-
-Profile>> #setKarma
-	|aux|
-	aux:= self calcKarma.
-	(aux between: 31 and: 50)
+Profile>> #setKarma: aNumber
+	(aNumber between: 31 and: 50)
 	ifTrue: [ self karma: self karma + 2 ].
-	(aux > 51)
+	(aNumber > 51)
 	ifTrue: [ self karma: self karma + 3 ].
 	self posts: 0; likes: 0.
 	  
 Gold>> #calcKarma
 	|aux|
 	aux:= (posts * likes / Float halfPi) asInteger.
-	^aux.
+	super setKarma: aux. 
 Silver>> #calcKarma
 	|aux|
 	aux:= (posts * likes / Float pi) asInteger.
-	^aux.
+	super setKarma: aux.
 	
 -------EN PLAYGROUND------------------------
 userA:= Gold new.
@@ -164,7 +159,7 @@ userA likes.
 userA karma.
 userA like.
 userA post.
-userA setKarma. 
+userA calcKarma. 
 
 userB:= Silver new.
 userB posts.
@@ -172,10 +167,10 @@ userB likes.
 userB karma.
 userB like.
 userB post.
-userB setKarma.
+userB calcKarma.
 
 1. ¿Qué modificaciones o extensiones debe hacer a la resolución del ejercicio 4?
-Se deben agregar las clase Gold y Siver, extendidas de usuario, definir en cada subclase el método #calcKarma, para que lo realicen directamente las subclases de Profile, y que ésta se los delegue, y agregar un método setKarma en Profile que se encargue del cálculo en base al cálculo de cada subclase, que es el mismo, para evitar el duplicado de código.
+Se deben agregar las clase Gold y Silver, extendidas de usuario, definir en cada subclase el método #calcKarma, para que lo realicen directamente las subclases de Profile, agregar un método setKarma en Profile que se encargue del cálculo en base al cálculo de cada subclase, que es el mismo, para evitar el duplicado de código y desde las sublases invocarlo y enviarle el valor calculado.
 2. ¿Qué comportamiento tienen en común los usuarios Gold y Silver?
 El propio de Profile.
 3. La superclase de ambos usuarios, ¿puede instanciarse?
