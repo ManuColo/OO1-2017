@@ -269,7 +269,14 @@ Medicion class>> newWithValue: aValue and: aClock
 	relValue:0;
 	timestamp: aClock;
 	yourself.
-	
+
+Medicion class>> newWithValue: aValue and:otherValue and: aClock
+	^self new
+	absValue: aValue;
+	relValue: otherValue;
+	timestamp: aClock;
+	yourself.
+
 SistemaMonitoreo>> #mediciones: aCollection
 	mediciones:= aCollection. 
 
@@ -287,8 +294,9 @@ SistemaMonitoreo>> #addDiferentialTemperature: aValue clock: aNumber
 "agrega una medicion diferencial"
 	|aux act|
 	aux:= self mediciones last absValue.
-	act:= aux + aNumber.
-	self mediciones addLast:(Medicion newWithValue: act and: aNumber)
+	act:= aux + aValue.
+	self mediciones addLast:(Medicion newWithValue: act and: aValue and: aNumber)
+
 	
 SistemaMonitoreo>> #currentTemperature
 "retorna la temperatura actual"
