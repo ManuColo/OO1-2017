@@ -270,12 +270,18 @@ Medicion class>> newWithValue: aValue and: aClock
 	timestamp: aClock;
 	yourself.
 	
+SistemaMonitoreo>> #mediciones: aCollection
+	mediciones:= aCollection. 
+
+SistemaMonitoreo>> #mediciones
+	^mediciones.
+	
 SistemaMonitoreo>> #initialize
 	mediciones:= OrderedCollection new.
 	
 SistemaMonitoreo>> #addAbsoluteTemperature: aValue clock: aNumber
 "agrega una medicion absoluta"
-	self mediciones add: (Medicion newWithValue: aValue and: aNumber).
+	self mediciones addLast: (Medicion newWithValue: aValue and: aNumber).
 	
 SistemaMonitoreo>> #currentTemperature
 "retorna la temperatura actual"
