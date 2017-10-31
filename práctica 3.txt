@@ -251,7 +251,7 @@ Medicion subclass: #MedicionAbsoluta
 	package: 'Mediciones'
 
 Medicion subclass: #MedicionRelativa
-	instanceVariableNames: 'real'
+	instanceVariableNames: 'increment'
 	classVariableNames: ''
 	package: 'Mediciones'
 	
@@ -273,17 +273,17 @@ MedicionAbsoluta class>> newWithValue: aValue and: aClock
 	timestamp: aClock;
 	yourself.
 
-MedicionRelativa>> #real: aNumber
-	real:= aNumber.
+MedicionRelativa>> #increment: aNumber
+	increment:= aNumber.
 
-MedicionRelativa>> #real
-	^real.
+MedicionRelativa>> #increment
+	^increment.
 	
 MedicionRelativa class>> newWithValue: aValue and: otherValue and: aClock
 	^self new
 	value: aValue;
 	timestamp: aClock;
-	real: otherValue;
+	increment: otherValue;
 	yourself.
 
 SistemaMonitoreo>> #mediciones: aCollection
@@ -342,3 +342,6 @@ medicion currentTemperature.
 medicion allTemperatureValues.
 medicion averageTemperature. 
 medicion reset.
+(medicion mediciones at:2) increment.
+(medicion mediciones at:1) timestamp.
+(medicion mediciones last) value.
