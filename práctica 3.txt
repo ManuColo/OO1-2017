@@ -235,6 +235,8 @@ La variable se inicializa seteando el body con el resultado del llamado al méto
 Para inicializar con otros tipos de body, podría cambiar el objeto al que hace referencia bodyClass. Tambíen podría definir un constructor distinto, que llame a otra clase, no a bodyClass.
 
 8-
+Hay cuatro clases involucradas: SistemaMonitoreo, Medicion, MedicionAbsoluta, MedicionRelativa. SistemaMonitoreo, Medición heredan de object, y los dos tipos de mediciones, heredan de Medicion, pero todas se conocen. SistemaMonitoreo tiene una variable de instancia que es una coleccion, que guarda  instancias de Medicion, ya sea absoluta o relativa (es polimórfica).
+
 Object subclass: #SistemaMonitoreo
 	instanceVariableNames: 'mediciones'
 	classVariableNames: ''
@@ -345,3 +347,15 @@ medicion reset.
 (medicion mediciones at:2) increment.
 (medicion mediciones at:1) timestamp.
 (medicion mediciones last) value.
+
+EJEMPLO
+ejemplo:= SistemaMonitoreo new.
+ejemplo addAbsoluteTemperature: 90 clock: 1.
+ejemplo addDiferentialTemperature: -0.1 clock: 2.
+ejemplo addDiferentialTemperature: 0.1 clock: 3.
+ejemplo addDiferentialTemperature: -0.2 clock: 4.
+ejemplo addAbsoluteTemperature: 90 clock: 5.
+ejemplo allTemperatureValues.
+ejemplo currentTemperature. 
+ejemplo averageTemperature. 
+ejemplo reset.
