@@ -272,6 +272,12 @@ MedicionAbsoluta class>> newWithValue: aValue and: aClock
 	value: aValue;
 	timestamp: aClock;
 	yourself.
+
+MedicionRelativa>> #real: aNumber
+	real:= aNumber.
+
+MedicionRelativa>> #real
+	^real.
 	
 MedicionRelativa class>> newWithValue: aValue and: otherValue and: aClock
 	^self new
@@ -296,8 +302,9 @@ SistemaMonitoreo>> #addAbsoluteTemperature: aValue clock: aNumber
 SistemaMonitoreo>> #addDiferentialTemperature: aValue clock: aNumber
 "agrega una medicion diferencial"
 	|ultimaAbsoluta act|
-	ultimaAbsoluta:= self mediciones detect: [:medicion | medicion class = MedicionAbsoluta ].
-	act:= ultimaAbsoluta value + aValue.
+	ultimaAbsoluta:= OrderedCollection new.
+	ultimaAbsoluta addAll: (self mediciones select: [:medicion | medicion class = MedicionAbsoluta ]).
+	act:= ultimaAbsoluta last value + aValue.
 	self mediciones addLast:(MedicionRelativa newWithValue: act and: aValue and: aNumber)
 	
 SistemaMonitoreo>> #currentTemperature
