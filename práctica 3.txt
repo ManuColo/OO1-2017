@@ -315,6 +315,13 @@ SistemaMonitoreo>> #allTemperatureValues
 "retorna una colección con los valores de temperatura"
 	^self mediciones do: [:med | Transcript show: med value].
 	
+SistemaMonitoreo>> #averageTemperature
+"retorna el promedio de temperaturas"
+	|sum promedio|
+	sum:=0.
+	self mediciones do: [:med | sum:= sum + med value].
+	^promedio:= sum / self mediciones size.
+	
 -------EN PLAYGROUND------------------------
 
 medicion:= SistemaMonitoreo new.
@@ -325,3 +332,4 @@ medicion addAbsoluteTemperature: 90 clock: 3.
 medicion addDiferentialTemperature: 0.3 clock: 2.
 medicion currentTemperature.
 medicion allTemperatureValues.
+medicion averageTemperature. 
