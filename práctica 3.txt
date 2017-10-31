@@ -359,3 +359,54 @@ ejemplo allTemperatureValues.
 ejemplo currentTemperature. 
 ejemplo averageTemperature. 
 ejemplo reset.
+
+9-
+Object subclass: #Cifrador
+	instanceVariableNames: 'cipher decipher'
+	classVariableNames: ''
+	package: 'Cifrador'
+
+Cifrador subclass: #BasicShiftCipher
+	instanceVariableNames: 'key'
+	classVariableNames: ''
+	package: 'Cifrador'
+
+Cifrador subclass: #CesarCipher
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Cifrador'
+
+Cifrador subclass: #ShiftCipher
+	instanceVariableNames: 'key alphabet'
+	classVariableNames: ''
+	package: 'Cifrador'	
+
+Cifrador>> #cipher: aString
+	cipher:= aString.
+
+Cifrador>> #cipher
+	^cipher.
+
+Cifrador>> #decipher: aString
+	decipher:= aString.
+
+Cifrador>> #decipher
+	^decipher.
+	
+BasicShiftCipher>> #key: aKey
+	key:= aKey.
+	
+BasicShiftCipher>> #key
+	^key.
+	
+ShiftCipher>> #key: aKey
+	key:= aKey.
+	
+ShiftCipher>> #key
+	^key.
+
+ShiftCipher>> #alphabet: anAlphabet
+	alphabet:= anAlphabet.
+	
+ShiftCipher>> #alphabet	 
+	^alphabet.
