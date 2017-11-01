@@ -234,5 +234,8 @@ En #body: se asigna a la variable body un aRobotBody, y setea la variable bot de
 La variable se inicializa seteando el body con el resultado del llamado al método #bodyClass new, que devuelve una instancia de BGSRobotBody.
 Para inicializar con otros tipos de body, podría cambiar el objeto al que hace referencia bodyClass. Tambíen podría definir un constructor distinto, que llame a otra clase, no a bodyClass.
 
-
-
+--Visado 2 de Parcial Reducido
+Dado el carrito de compras (ej6) se requiere que en cada compra se actualice su cantidad de compras realizadas por el cliente.
+Además se debe considerar que según la cantidad de compras hay un descuento extra:
+  - de 0 a 10 no hay descuento.
+  - + de 10, por cada 10 hay un 0,1% extra.
