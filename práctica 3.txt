@@ -179,10 +179,60 @@ Si, podría porque tiene su método de clase y su inicialize, pero no podría ca
 Abstracta? Se crea vacía, sin métodos. 
 
 6-
-Object subclass: #Carrito
-	instanceVariableNames: 'cantProductos totalCompra'
+Object subclass: #Cliente
+	instanceVariableNames: 'nombre cantCompras'
 	classVariableNames: ''
-	package: 'Carrito'
+	package: 'p3ej6'
+
+##### Clase #####
+#new: aName cantCompras: aNumber
+	^ (self new) nombre: aName; cantCompras: aNumber.
+
+##### Instancia #####
+#cantCompras
+	^ cantCompras.
+
+#cantCompras: aCant
+	cantCompras:= aCant.
+
+#nombre
+	^ nombre.
+
+#nombre: aName
+	nombre:= aName.
+
+#initialize
+	^ self cantCompras: 0.
+
+#incCompras
+	self cantCompras: self cantCompras + 1.
+
+Object subclass: #Producto
+	instanceVariableNames: 'nombre precio'
+	classVariableNames: ''
+	package: 'p3ej6'
+
+######## Clase #######
+#new: aName price: aPrice
+	^ self new nombre: aName; precio: aPrice.
+
+######## Instancia ########
+#nombre
+	^ nombre.
+
+#nombre: aName
+	nombre := aName.
+
+#precio
+	^ precio.
+
+#precio: aPrice
+	precio := aPrice.
+
+Object subclass: #Carrito
+	instanceVariableNames: 'cantProductos totalCompra cliente productos'
+	classVariableNames: ''
+	package: 'p3ej6'
 
 #cantProductos: aNumber
  cantProductos:= aNumber. 
@@ -194,28 +244,62 @@ Object subclass: #Carrito
  totalCompra:= aNumber.
 
 #totalCompra
- ^ totalCompra. 
+ ^ totalCompra.
  
-#initialize
- ^self cantProductos: 0; totalCompra: 0.
+#cliente
+ ^ cliente.
+ 
+#cliente: aClient
+ cliente:= aClient.
 
-#addProd: aPrice
+#productos
+ ^ productos.
+
+#productos: anOrderedCollection
+ productos:= anOrderedCollection.
+
+#initialize
+ ^self 
+	cantProductos: 0; 
+	totalCompra: 0;
+	productos: OrderedCollection new.
+	
+#addProd: aProduct
+	self productos add: aProduct.
 	self cantProductos: self cantProductos + 1.
-	self totalCompra: self totalCompra + aPrice.
+	self totalCompra: self totalCompra + aProduct precio.
 
 #calcTotal
+	|total|
+	total := self totalCompra.
 	(self cantProductos > 10)
-	ifTrue: [ self totalCompra: self totalCompra - (self totalCompra * 10 percent) ].
-	(self totalCompra > 10000)
-	ifTrue: [ self totalCompra: self totalCompra - (self totalCompra * 5 percent)].
+	ifTrue: [ total := total - (total * 10 percent) ].
+	(total > 10000)
+	ifTrue: [ total := total - (total * 5 percent)].
+	^ total.
+
+#checkout
+|total descuento|
+total:= self calcTotal.
+(self cliente cantCompras > 10)
+ifTrue: [ 
+		descuento := (self cliente cantCompras // 10) * 0.1 percent.
+		self totalCompra: total - (total * descuento).
+	]
+ifFalse: [ 
+		self totalCompra: total.
+	 ].
+self cliente incCompras.
 	
 -------EN PLAYGROUND------------------------
-
-compra:= Carrito new.
+|compra producto cliente|
+producto:= Producto new: 'shampoo' price: 20.
+cliente:= Cliente new: 'Juan Perez' cantCompras: 13.
+compra:= Carrito newWithClient: cliente.
 compra cantProductos.
 compra totalCompra.
-compra addProd: 100000.
-compra calcTotal.  
+compra addProd: producto.
+compra checkout.
 
 7-
 No sería necesaria la redefinición de #position en WalkingBrushRobot, porque se implementa igual en BGSRobot, y se invocaría igual.
